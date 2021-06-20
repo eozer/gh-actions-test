@@ -2,4 +2,4 @@ name: 'Prepare KRDAE data'
 description: 'Fetch and preprocess data from KRDAE using a docker container.'
 runs:
   using: 'docker'
-  image: './Dockerfile'
+  image: 'Dockerfile'
