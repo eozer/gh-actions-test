@@ -31,3 +31,9 @@ jobs:
       run: |
         python make_df.py
         ls -lah
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "*.csv.zip"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
