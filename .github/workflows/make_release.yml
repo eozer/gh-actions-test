@@ -38,4 +38,4 @@ jobs:
         automatic_release_tag: "latest"
         prerelease: false
         files: |
-          "*.csv.zip"
+          "*.zip"
