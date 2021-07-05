@@ -3,7 +3,7 @@ import pandas as pd
 import git
 from tqdm import tqdm
 
-fpath = 'krdae-data.csv'
+fname = 'krdae-data.csv'
 # starting commit hash "4993d..." is the first commit where krdae-data.csv was
 # written, we do not need to go back further.
 ref = '4993d5837e5b705aa208104f5bb7cf6c6174f9e1..main'
@@ -27,7 +27,7 @@ def iterate_file_versions(repo_path: str, filepath: str, ref: str = "main"):
         yield commit.committed_datetime, commit.hexsha, blob.data_stream
 
 os.system("git clone https://github.com/eozer/krdae-data.git")
-it = iterate_file_versions('krdae-data', fpath, ref)
+it = iterate_file_versions('krdae-data', f"{fname}.csv", ref)
 enum_it = enumerate(it)
 i, (t, h, f) = enum_it.__next__()
 df: pd.DataFrame = pd.read_csv(f)
@@ -57,12 +57,12 @@ df.sort_values("timestamp", axis=0, ascending=False, inplace=True)
 print(df.info(memory_usage='deep', verbose=True))
 
 print("Writing to csv: small data... ", end="")
-df[:small_rows_max].to_csv(f"{fpath}-small.zip", index=False)
+df[:small_rows_max].to_csv(f"{fname}-small.csv.zip", index=False)
 print("OK")
 print("Writing to csv: medium data.. ", end="")
-df[:medium_rows_max].to_csv(f"{fpath}-medium.zip", index=False)
+df[:medium_rows_max].to_csv(f"{fname}-medium.csv.zip", index=False)
 print("OK")
 print("Writing to csv: large data... ", end="")
-df[:large_rows_max].to_csv(f"{fpath}-large.zip", index=False)
+df[:large_rows_max].to_csv(f"{fname}-large.csv.zip", index=False)
 print("OK")
 print("Finished!")
