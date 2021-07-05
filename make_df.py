@@ -3,7 +3,7 @@ import pandas as pd
 import git
 from tqdm import tqdm
 
-fname = 'krdae-data.csv'
+fname = 'krdae-data'
 # starting commit hash "4993d..." is the first commit where krdae-data.csv was
 # written, we do not need to go back further.
 ref = '4993d5837e5b705aa208104f5bb7cf6c6174f9e1..main'
